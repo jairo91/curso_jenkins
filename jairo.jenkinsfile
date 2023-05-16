@@ -3,14 +3,22 @@ def function1(action){
 	echo "Entra en la función"
 }
 
+echo "Executing every 1 min..."
+triggers << cron('H/1 * * * *') // every 1 minute
+
+
+properties (
+    [
+        pipelineTriggers(triggers)
+    ]
+)
+
 
 node {
 	environment {
         LANG='es_ES.UTF-8'
     }
-    triggers {
-        pollSCM('* * * * *')
-    }
+
     stage('Checkout') {
         echo 'Checkout the last version from GIT..'
         deleteDir()
@@ -21,6 +29,7 @@ node {
             bat 'mvn clean'
             bat 'mvn package'
             bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
+            function1()
     }
 
     stage('Notification via email') {
