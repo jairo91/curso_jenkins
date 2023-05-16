@@ -1,5 +1,5 @@
 def triggers = []
-def function1(action){
+def function1(){
 	echo "Entra en la función"
 }
 
