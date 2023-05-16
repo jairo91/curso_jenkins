@@ -4,7 +4,7 @@ def function1(){
 }
 
 echo "Executing every 1 min..."
-triggers << cron('H/1 * * * *') // every 1 minute
+triggers << cron('* * * * *') // every 1 minute
 
 
 properties (
