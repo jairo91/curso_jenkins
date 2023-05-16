@@ -3,15 +3,15 @@ def function1(){
 	echo "Entra en la función"
 }
 
-echo "Executing every 1 min..."
-triggers << cron('* * * * *') // every 1 minute
-
-
-properties (
-    [
-        pipelineTriggers(triggers)
-    ]
-)
+// echo "Executing every 1 min..."
+// triggers << cron('* * * * *') // every 1 minute
+//
+//
+// properties (
+//     [
+//         pipelineTriggers(triggers)
+//     ]
+// )
 
 
 node {
