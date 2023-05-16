@@ -1,6 +1,9 @@
 def triggers = []
-def function1(){
-	echo "Entra en la función"
+def ejecutarMaven(){
+	echo 'Ejecuto los comandos..'
+    bat 'mvn clean'
+    bat 'mvn package'
+    bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
 }
 
 // echo "Executing every 1 min..."
@@ -21,11 +24,7 @@ node {
         checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
     }
     stage('Ejecutar comandos') {
-            echo 'Ejecuto los comandos..'
-            bat 'mvn clean'
-            bat 'mvn package'
-            bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
-            function1()
+            ejecutarMaven()
     }
 
     stage('Notification via email') {
