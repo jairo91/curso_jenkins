@@ -15,10 +15,6 @@ properties (
 
 
 node {
-	environment {
-        LANG='es_ES.UTF-8'
-    }
-
     stage('Checkout') {
         echo 'Checkout the last version from GIT..'
         deleteDir()
