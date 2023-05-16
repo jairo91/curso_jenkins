@@ -1,4 +1,4 @@
-
+def triggers = []
 def function1(action){
 	echo "Entra en la función"
 }
