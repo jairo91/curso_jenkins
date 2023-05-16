@@ -1,0 +1,32 @@
+
+def function1(action){
+	echo "Entra en la función"
+}
+
+
+node {
+	environment {
+        LANG='es_ES.UTF-8'
+    }
+    triggers {
+        pollSCM('* * * * *')
+    }
+    stage('Checkout') {
+        echo 'Checkout the last version from GIT..'
+        deleteDir()
+        checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
+        }
+    }
+    stage('Ejecutar comandos') {
+            echo 'Ejecuto los comandos..'
+            bat 'mvn clean'
+            bat 'mvn package'
+            bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
+    }
+
+    stage('Notification via email') {
+       echo 'Notificating via email....'
+       mail bcc: '', body: 'Body Jairo', cc: '', from: '', replyTo: '', subject: 'Subject Jairo', to: 'jairo.mendez@grupoonetec.com'
+    }
+}
+
