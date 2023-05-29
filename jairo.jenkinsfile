@@ -6,15 +6,15 @@ def ejecutarMaven(){
     bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
 }
 
-echo "Executing every 1 min..."
-triggers << cron('* * * * *') // every 1 minute
-
-
-properties (
-    [
-        pipelineTriggers(triggers)
-    ]
-)
+// echo "Executing every 1 min..."
+// triggers << cron('* * * * *') // every 1 minute
+//
+//
+// properties (
+//     [
+//         pipelineTriggers(triggers)
+//     ]
+// )
 
 
 node ("esclavo"){
