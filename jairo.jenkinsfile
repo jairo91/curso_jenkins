@@ -23,6 +23,14 @@ node {
         deleteDir()
         checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
     }
+    stage('Versión de node'){
+        sh 'node -version'
+        nodejs('node_16.0') {
+            sh 'node -version'
+        }
+        sh 'node -version'
+    }
+
     stage('Ejecutar comandos') {
             ejecutarMaven()
     }
