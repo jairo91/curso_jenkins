@@ -17,7 +17,7 @@ def ejecutarMaven(){
 // )
 
 
-node {
+node ("esclavo"){
     stage('Checkout') {
         echo 'Checkout the last version from GIT..'
         deleteDir()
