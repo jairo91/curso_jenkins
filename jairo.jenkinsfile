@@ -24,11 +24,11 @@ node {
         checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
     }
     stage('Versión de node'){
-        sh 'node -version'
+        sh 'node -v'
         nodejs('node_16.0') {
-            sh 'node -version'
+            sh 'node -v'
         }
-        sh 'node -version'
+        sh 'node -v'
     }
 
     stage('Ejecutar comandos') {
