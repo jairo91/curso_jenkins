@@ -18,30 +18,38 @@ def ejecutarMaven(){
 
 
 node ("esclavo"){
-    stage('Checkout') {
-        echo 'Checkout the last version from GIT..'
-        deleteDir()
-        checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
-    }
-    stage('Versión de node'){
-        sh 'node -v'
-        nodejs('node_16.0') {
-            sh 'node -v'
-        }
-        sh 'node -v'
-    }
+	try{
+		stage('Checkout') {
+			echo 'Checkout the last version from GIT..'
+			deleteDir()
+			checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
+		}
+		stage('Versión de node'){
+			sh 'node -v'
+			nodejs('node_16.0') {
+				sh 'node -v'
+			}
+			sh 'node -v'
+		}
 
-    stage('Ejecutar comandos') {
-            ejecutarMaven()
-    }
+		stage('Ejecutar comandos') {
+				ejecutarMaven()
+		}
 
-    stage('Subir reporte Cucumber'){
-        cucumber buildStatus: 'null', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/resources/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
-    }
+		stage('Subir reporte Cucumber'){
+			cucumber buildStatus: 'null', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: 'reports/cucumber.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+		}
 
-    stage('Notification via email') {
-       echo 'Notificating via email....'
-       mail bcc: '', body: 'Body Jairo', cc: '', from: '', replyTo: '', subject: 'Subject Jairo', to: 'jairo.mendez@grupoonetec.com'
-    }
+		stage('Guardar aplicación'){
+			archiveArtifacts artifacts: 'application/app-debug.apk', fingerprint: true
+		}
+
+		stage('Notification via email') {
+			echo 'Notificating via email....'
+			mail bcc: '', body: 'Body Jairo', cc: '', from: '', replyTo: '', subject: 'Subject Jairo', to: 'jairo.mendez@grupoonetec.com'
+		}
+	}catch(error){
+		echo "Error controlado. NO ESTAMOS TAN MAL"
+	}
 }
 
