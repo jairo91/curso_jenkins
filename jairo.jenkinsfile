@@ -22,7 +22,7 @@ node ("esclavo"){
 		stage('Checkout') {
 			echo 'Checkout the last version from GIT..'
 			deleteDir()
-			checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
+			checkout scmGit(branches: [[name: "*/${env.branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
 		}
 		stage('Versión de node'){
 			sh 'node -v'
