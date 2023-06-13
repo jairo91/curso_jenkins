@@ -1,0 +1,30 @@
+def triggers = []
+echo "Executing every 1 min..."
+triggers << cron('* * * * *') // every 1 minute
+
+
+properties (
+    [
+        pipelineTriggers(triggers)
+    ]
+)
+
+def executionMaven(){
+        bat 'mvn clean'
+        bat 'mvn package'
+}
+
+node{
+    stage('Checkout'){
+        checkout scmGit(branches: [[name: '*/diego']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
+    }
+    stage('build'){
+        executionMaven()
+    }
+
+    stage('Execute'){
+        bat java -cp target/Jenkins-1.jar Execute.Launcher
+    }
+
+
+}
