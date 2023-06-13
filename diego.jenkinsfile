@@ -18,13 +18,11 @@ node{
     stage('Checkout'){
         checkout scmGit(branches: [[name: '*/diego']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
     }
-    stage('build'){
+    stage('Build'){
         executionMaven()
     }
 
     stage('Execute'){
-        bat java -cp target/Jenkins-1.jar Execute.Launcher
+        bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
     }
-
-
 }
