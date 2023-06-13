@@ -29,4 +29,8 @@ node{
 		bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
 	}
 
+	stage('Notifiation email'){
+		emailext body: 'Este el body de Jenkins', subject: 'Mensaje de prueba desde Jenkins', to: 'jairo.mendez@grupoonetec.com'
+	}
+
 }
