@@ -21,6 +21,14 @@ node{
 		checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
 	}
 
+	stage('Node version'){
+		echo 'node -v'
+		nodejs('node_v14.4.0') {
+			echo 'node -v'
+		}
+		echo 'node -v'
+	}
+
 	stage('Build'){
 		exceutionMaven()
 	}
