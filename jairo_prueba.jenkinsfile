@@ -1,13 +1,13 @@
-def triggers = []
-echo "Executing every 1 min..."
-triggers << cron('* * * * *') // every 1 minute
+// def triggers = []
+// echo "Executing every 1 min..."
+// triggers << cron('* * * * *') // every 1 minute
 
 
-properties (
-    [
-        pipelineTriggers(triggers)
-    ]
-)
+// properties (
+//     [
+//         pipelineTriggers(triggers)
+//     ]
+// )
 
 def exceutionMaven(){
 	bat 'mvn clean'
