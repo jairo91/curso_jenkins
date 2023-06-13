@@ -30,7 +30,7 @@ node{
 	}
 
 	stage('Notifiation email'){
-		emailext body: 'Este el body de Jenkins', subject: 'Mensaje de prueba desde Jenkins', to: 'jairo.mendez@grupoonetec.com'
+		mail bcc: '', body: 'Body Jairo', cc: '', from: '', replyTo: '', subject: 'Subject Jairo', to: 'jairo.mendez@grupoonetec.com'
 	}
 
 }
