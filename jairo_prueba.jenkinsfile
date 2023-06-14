@@ -28,7 +28,7 @@ node ('esclavo'){
 
 		stage('Node version'){
 			echo "La versión de node se ejecuta: ${env.nodeversion}"
-			if(env.nodeversion){
+			if(env.nodeversion == "true"){
 				bat 'node -v'
 				nodejs('node_v14.4.0') {
 					bat 'node -v'
