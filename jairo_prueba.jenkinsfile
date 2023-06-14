@@ -47,6 +47,10 @@ node ('esclavo'){
 			exceutionMaven()
 		}
 
+		stage('Launch other job'){
+			build job: 'curso_jenkins', wait: true
+		}
+
 		stage('Execution'){
 			bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
 		}
