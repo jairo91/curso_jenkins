@@ -16,6 +16,9 @@ def exceutionMaven(){
 
 
 node{
+	stage('Delelete workspace'){
+		cleanWs()
+	}
 
 	stage('Checkout'){
 		checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
@@ -27,6 +30,12 @@ node{
 			bat 'node -v'
 		}
 		bat 'node -v'
+	}
+
+	stage('Dir'){
+		dir('resources') {
+			bat 'ls'
+		}
 	}
 
 	stage('Build'){

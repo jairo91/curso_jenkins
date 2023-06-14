@@ -1,4 +1,3 @@
-def triggers = []
 def ejecutarMaven(){
 	echo 'Ejecuto los comandos..'
     bat 'mvn clean'
@@ -6,6 +5,7 @@ def ejecutarMaven(){
     bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
 }
 
+// def triggers = []
 // echo "Executing every 1 min..."
 // triggers << cron('* * * * *') // every 1 minute
 //
