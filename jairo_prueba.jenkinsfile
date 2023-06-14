@@ -22,6 +22,7 @@ node ('esclavo'){
 		}
 
 		stage('Checkout'){
+			echo "La rama es: ${env.branch}"
 			checkout scmGit(branches: [[name: "*/${env.branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
 		}
 
