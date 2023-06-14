@@ -22,7 +22,7 @@ node ('esclavo'){
 		}
 
 		stage('Checkout'){
-			checkout scmGit(branches: [[name: '*/jairo']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
+			checkout scmGit(branches: [[name: "*/${env.branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jairo91/curso_jenkins.git']])
 		}
 
 		stage('Node version'){
