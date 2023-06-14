@@ -47,6 +47,10 @@ node{
 			bat 'java -cp target/Jenkins-1.jar Execute.Launcher'
 		}
 
+		stage('Cucumber report'){
+			cucumber buildStatus: 'null', customCssFiles: '', customJsFiles: '', failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: 'reports/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+		}
+
 		stage('Notifiation email'){
 			mail bcc: '', body: 'Body Jairo', cc: '', from: '', replyTo: '', subject: 'Subject Jairo', to: 'jairo.mendez@grupoonetec.com'
 		}
