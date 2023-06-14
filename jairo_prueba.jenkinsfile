@@ -15,7 +15,7 @@ def exceutionMaven(){
 		bat 'mvn clean'
 		bat 'mvn package'
 	}catch(error){
-		echo "Controlado el error e imprimo esto"
+		throw "Controlado el error e imprimo esto" + error
 	}	
 
 }
