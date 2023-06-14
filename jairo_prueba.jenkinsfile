@@ -27,11 +27,13 @@ node ('esclavo'){
 		}
 
 		stage('Node version'){
-			bat 'node -v'
-			nodejs('node_v14.4.0') {
+			if(env.nodeversion){
+				bat 'node -v'
+				nodejs('node_v14.4.0') {
+					bat 'node -v'
+				}
 				bat 'node -v'
 			}
-			bat 'node -v'
 		}
 
 		stage('Dir'){
